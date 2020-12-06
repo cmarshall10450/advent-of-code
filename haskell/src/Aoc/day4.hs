@@ -1,6 +1,6 @@
-module Main where
+module Aoc.Day4 where
 
-import AOC
+import Aoc.Util
 import Data.Char
 import Data.List.Split
 import Data.List.Utils (replace)
@@ -43,12 +43,12 @@ isValidDocument' d = isValidDocument d && all (\v -> snd v $ fromJust $ M.lookup
 solvePart :: (Document -> Bool) -> [String] -> Int
 solvePart f = length . filter (== True) . map (f . M.fromList . map ((\x -> (head x, last x)) . splitOn ":") . splitOn " " . replace "\n" " ")
 
-main :: IO ()
-main = do
+run :: IO ()
+run = do
   solve
     4
     Solution
-      { parse = splitOn "\n\n",
+      { parse = splitByBlankLines,
         part1 = solvePart isValidDocument,
         part2 = solvePart isValidDocument'
       }

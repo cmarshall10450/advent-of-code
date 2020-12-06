@@ -1,12 +1,8 @@
-module AOC
-  ( module AOC,
-  )
-where
+module Aoc.Util where
 
-import Control.Exception
-import Formatting
-import Formatting.Clock
-import System.Clock
+import Data.List.Split
+import Data.List (delete)
+import Data.List.Utils (replace)
 
 type Day = Int
 
@@ -19,12 +15,11 @@ data Solution a b c = Solution
 getInput :: Day -> IO String
 getInput d = readFile $ "./input/day" ++ show d ++ ".txt"
 
-benchmark :: IO a -> IO ()
-benchmark action = do
-  start <- getTime Monotonic
-  action
-  end <- getTime Monotonic
-  fprint (" (" % timeSpecs % ")\n") start end
+count :: (a -> Bool)  -> [a] -> Int
+count f = length . filter f
+
+splitByBlankLines :: String -> [String]
+splitByBlankLines = splitOn "\n\n"
 
 todo :: a -> String
 todo x = "(not implemented)"
@@ -33,10 +28,6 @@ solve :: (Show b, Show c) => Int -> Solution a b c -> IO ()
 solve day solution = do
   input <- getInput day
   let problem = parse solution input
-
-  benchmark $ do
-    putStr "Parsing input..."
-    evaluate problem
 
   putStrLn $ "Part 1: " ++ show (part1 solution problem)
   putStrLn $ "Part 2: " ++ show (part2 solution problem)

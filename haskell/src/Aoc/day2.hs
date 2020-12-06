@@ -1,6 +1,6 @@
-module Main where
+module Aoc.Day2 where
 
-import AOC
+import Aoc.Util
 import Data.List.Split
 
 type Secret = String
@@ -49,8 +49,8 @@ meetsNewPolicy pwd = (pSecret !! idx1 == secretLetter) /= (pSecret !! idx2 == se
     idx2 = (pMax $ policy pwd) - 1
     secretLetter = letter $ policy pwd
 
-main :: IO ()
-main = do
+run :: IO ()
+run = do
   solve
     2
     Solution

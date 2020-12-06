@@ -1,6 +1,6 @@
-module Main where
+module Aoc.Day5 where
 
-import AOC
+import Aoc.Util
 import Control.Monad (liftM2)
 import Data.List
 
@@ -26,8 +26,8 @@ binaryPart a b (x : xs) l =
 seatIds :: [String] -> [Int]
 seatIds = map (\x -> binaryPart 'F' 'B' (take 7 x) [0 .. 127] * 8 + binaryPart 'L' 'R' (drop 7 x) [0 .. 7])
 
-main :: IO ()
-main = do
+run :: IO ()
+run = do
   solve
     5
     Solution

@@ -1,9 +1,9 @@
-module Main where
+module Aoc.Day1 where
 
-import AOC
+import Aoc.Util
 
-main :: IO ()
-main = do
+run :: IO ()
+run = 
   solve
     1
     Solution

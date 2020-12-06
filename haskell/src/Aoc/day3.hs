@@ -1,6 +1,6 @@
-module Main where
+module Aoc.Day3 where
 
-import AOC
+import Aoc.Util
 
 data Space = Ground | Tree deriving (Show)
 
@@ -29,8 +29,8 @@ solvePart1 x y l = length $ filter isTree slope
 solvePart2 :: [String] -> [(Int, Int)] -> Int
 solvePart2 = (product .) . map . flip (uncurry solvePart1)
 
-main :: IO ()
-main = do
+run :: IO ()
+run = do
   let allSlopes = [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]
   solve
     3
